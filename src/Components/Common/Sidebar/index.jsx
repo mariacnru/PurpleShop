@@ -1,0 +1,17 @@
+import ModeratorLinks from "../../Templates/Dashboard/ModeratorLinks";
+import Logout from "../../Templates/Dashboard/Logout";
+
+const index = () => {
+  return (
+    <aside className="w-70 bg-zinc-900 shadow-xl flex flex-col justify-between h-dvh! sticky top-0! right-0 border-l border-zinc-700">
+      <div>
+        <main className="p-3 space-y-1.5">
+          <ModeratorLinks />
+        </main>
+      </div>
+      <Logout />
+    </aside>
+  );
+};
+
+export default index;
