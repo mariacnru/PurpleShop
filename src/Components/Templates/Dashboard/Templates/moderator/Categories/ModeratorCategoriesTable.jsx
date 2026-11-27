@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import Table from "../../../common/Table/index";
-import TableToolbar from "../../../common/Table/TableToolbar";
-import TableHead from "../../../common/Table/TableHead";
-import TableRow from "../../../common/Table/TableRow";
-import TableCell from "../../../common/Table/TableCell";
-import TableBody from "../../../common/Table/TableBody";
-import useCategories from "../../../../../../lib/Hooks/useCategories";
-import { RiAddLine } from "react-icons/ri";
-import { FiEdit2, FiTrash2 } from "react-icons/fi";
-import Confirm from "../../../../../Common/Confirm";
-import { toast } from "sonner";
-import { deleteCategory } from "../../../../../../services/category.service";
-import ModalIndex from "../../../common/Modal/ModalIndex";
-import CreateCategoryModal from "./CreateCategoryModal";
-import EditCategory from "./EditCategory";
+import React, { useState } from 'react';
+import Table from '../../../common/Table/index';
+import TableToolbar from '../../../common/Table/TableToolbar';
+import TableHead from '../../../common/Table/TableHead';
+import TableRow from '../../../common/Table/TableRow';
+import TableCell from '../../../common/Table/TableCell';
+import TableBody from '../../../common/Table/TableBody';
+import useCategories from '../../../../../../lib/Hooks/useCategories';
+import { RiAddLine } from 'react-icons/ri';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import Confirm from '../../../../../Common/Confirm';
+import { toast } from 'sonner';
+import { deleteCategory } from '../../../../../../services/category.service';
+import ModalIndex from '../../../common/Modal/ModalIndex';
+import CreateCategoryModal from './CreateCategoryModal';
+import EditCategory from './EditCategory';
 
 const ModeratorCategoriesTable = () => {
   const { categories, isLoading, refetch, error } = useCategories();
@@ -38,14 +38,14 @@ const ModeratorCategoriesTable = () => {
     try {
       await deleteCategory(deletingCategory._id);
 
-      toast.success("دسته‌بندی با موفقیت حذف شد");
+      toast.success('دسته‌بندی با موفقیت حذف شد');
 
       setIsConfirmOpen(false);
       setDeletingCategory(null);
 
       await refetch();
     } catch (error) {
-      toast.error(error?.response?.data?.message || "خطا در حذف دسته‌بندی");
+      toast.error(error?.response?.data?.message || 'خطا در حذف دسته‌بندی');
     } finally {
       setIsDeleting(false);
     }
@@ -55,9 +55,7 @@ const ModeratorCategoriesTable = () => {
     <div className="relative">
       <Table>
         <TableToolbar className="flex justify-between items-center">
-          <div className="py-4 text-sm font-medium text-zinc-300">
-            دسته بندی ها
-          </div>
+          <div className="py-4 text-sm font-medium text-zinc-300">دسته بندی ها</div>
 
           <div className="">
             <button
@@ -97,25 +95,21 @@ const ModeratorCategoriesTable = () => {
         <TableBody>
           {isLoading && (
             <TableRow>
-              <TableCell className="text-purple-500">
-                درحال بارگذاری...
-              </TableCell>
+              <TableCell className="text-purple-500">درحال بارگذاری...</TableCell>
             </TableRow>
           )}
 
           {!isLoading && error && (
             <TableRow>
               <TableCell className="text-red-500">
-                {error || "خطا در دریافت دسته بندی ها"}
+                {error || 'خطا در دریافت دسته بندی ها'}
               </TableCell>
             </TableRow>
           )}
 
           {!isLoading && !error && categories?.length === 0 && (
             <TableRow>
-              <TableCell className="text-purple-500">
-                هنوز دسته بندی ثبت نشده
-              </TableCell>
+              <TableCell className="text-purple-500">هنوز دسته بندی ثبت نشده</TableCell>
             </TableRow>
           )}
 
@@ -130,9 +124,7 @@ const ModeratorCategoriesTable = () => {
                   <TableCell className="px-5 py-4 text-sm text-zinc-300">
                     {category.title}
                   </TableCell>
-                  <TableCell className="px-5 py-4 text-sm text-zinc-300">
-                    {category.slug}
-                  </TableCell>
+                  <TableCell className="px-5 py-4 text-sm text-zinc-300">{category.slug}</TableCell>
                   <TableCell className="px-5 py-4 text-sm text-zinc-300">
                     {category.filters?.length}
                   </TableCell>

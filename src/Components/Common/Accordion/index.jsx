@@ -1,5 +1,5 @@
-import React from "react";
-import AccordionItem from "./Item";
+import React from 'react';
+import AccordionItem from './Item';
 
 const Accordion = ({ options }) => {
   return (

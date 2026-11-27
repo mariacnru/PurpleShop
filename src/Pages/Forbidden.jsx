@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router";
-import { TbLockAccess } from "react-icons/tb";
+import React from 'react';
+import { Link } from 'react-router';
+import { TbLockAccess } from 'react-icons/tb';
 
 const Forbidden = () => {
   return (
@@ -15,20 +15,16 @@ const Forbidden = () => {
         </div>
 
         {/* Error Code */}
-        <p className="mb-2 text-sm font-medium tracking-[0.3em] text-purple-400">
-          خطای ۴۰۳
-        </p>
+        <p className="mb-2 text-sm font-medium tracking-[0.3em] text-purple-400">خطای ۴۰۳</p>
 
-        <h1 className="mb-4 text-4xl font-bold tracking-tight">
-          دسترسی غیرمجاز
-        </h1>
+        <h1 className="mb-4 text-4xl font-bold tracking-tight">دسترسی غیرمجاز</h1>
 
         <p className="mb-8 text-sm leading-7 text-zinc-400">
           شما اجازه دسترسی به این صفحه را ندارید.
           <br />
           اگر فکر می‌کنید این یک اشتباه است، با مدیر سیستم
           <br />
-          <Link to={"contact-us"} className="text-purple-500 underline">
+          <Link to={'contact-us'} className="text-purple-500 underline">
             تماس بگیرید
           </Link>
           .

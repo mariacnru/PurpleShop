@@ -1,5 +1,5 @@
-import { FaShoppingBasket } from "react-icons/fa";
-import { Link } from "react-router";
+import { FaShoppingBasket } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 export function EmptyBasket() {
   return (
@@ -13,9 +13,7 @@ export function EmptyBasket() {
       <div className="relative w-full max-w-3xl">
         {/* Header */}
         <div className="mb-5 flex items-center justify-between px-1">
-          <h1 className="text-xl font-bold text-zinc-100 sm:text-2xl">
-            سبد خرید شما
-          </h1>
+          <h1 className="text-xl font-bold text-zinc-100 sm:text-2xl">سبد خرید شما</h1>
 
           <span className="text-sm text-zinc-500">۰ محصول</span>
         </div>
@@ -27,9 +25,7 @@ export function EmptyBasket() {
             <FaShoppingBasket className="text-4xl text-purple-400" />
           </div>
 
-          <h2 className="mb-3 text-xl font-bold text-zinc-100">
-            سبد خرید شما خالی است
-          </h2>
+          <h2 className="mb-3 text-xl font-bold text-zinc-100">سبد خرید شما خالی است</h2>
 
           <p className="mb-8 max-w-md text-sm leading-7 text-zinc-500">
             هنوز محصولی به سبد خرید خود اضافه نکرده‌اید.

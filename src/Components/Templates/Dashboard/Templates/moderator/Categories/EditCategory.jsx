@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import ModalIndex from "../../../common/Modal/ModalIndex";
-import { toast } from "sonner";
-import { updateCategory } from "../../../../../../services/category.service";
+import React, { useEffect, useState } from 'react';
+import ModalIndex from '../../../common/Modal/ModalIndex';
+import { toast } from 'sonner';
+import { updateCategory } from '../../../../../../services/category.service';
 
 const emptyFilter = {
-  name: "",
-  slug: "",
-  type: "",
-  description: "",
+  name: '',
+  slug: '',
+  type: '',
+  description: '',
   options: [],
 };
 
 const EditCategory = ({ isOpen, onClose, category }) => {
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
-  const [parent, setParent] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState('');
+  const [slug, setSlug] = useState('');
+  const [parent, setParent] = useState('');
+  const [description, setDescription] = useState('');
   const [iconFile, setIconFile] = useState(null);
   const [filters, setFilters] = useState([]);
 
@@ -24,10 +24,10 @@ const EditCategory = ({ isOpen, onClose, category }) => {
   // initialValue
   useEffect(() => {
     if (isOpen && category) {
-      setTitle(category.title || "");
-      setSlug(category.slug || "");
-      setParent(category.parent || "");
-      setDescription(category.description || "");
+      setTitle(category.title || '');
+      setSlug(category.slug || '');
+      setParent(category.parent || '');
+      setDescription(category.description || '');
       setIconFile(null);
       setFilters(
         (category.filters || []).map((filter) => ({
@@ -49,9 +49,7 @@ const EditCategory = ({ isOpen, onClose, category }) => {
 
   const updateFilter = (index, field, value) => {
     setFilters((prev) =>
-      prev.map((filter, i) =>
-        i === index ? { ...filter, [field]: value } : filter,
-      ),
+      prev.map((filter, i) => (i === index ? { ...filter, [field]: value } : filter)),
     );
   };
 
@@ -61,7 +59,7 @@ const EditCategory = ({ isOpen, onClose, category }) => {
         i === index
           ? {
               ...filter,
-              options: value.split(",").map((item) => item.trim()),
+              options: value.split(',').map((item) => item.trim()),
             }
           : filter,
       ),
@@ -69,74 +67,68 @@ const EditCategory = ({ isOpen, onClose, category }) => {
   };
 
   const resetForm = () => {
-    setTitle("");
-    setSlug("");
-    setParent("");
-    setDescription("");
+    setTitle('');
+    setSlug('');
+    setParent('');
+    setDescription('');
     setIconFile(null);
     setFilters([]);
   };
 
   const handleSubmit = async () => {
     if (!title.trim() || !slug.trim() || !description.trim()) {
-      toast.error("عنوان، لینک و توضیحات ضروری هستند");
+      toast.error('عنوان، لینک و توضیحات ضروری هستند');
       return;
     }
 
     if (!category?._id) {
-      toast.error("شناسه دسته‌بندی یافت نشد");
+      toast.error('شناسه دسته‌بندی یافت نشد');
       return;
     }
 
-    console.log("Filters state:", filters);
+    console.log('Filters state:', filters);
     const formData = new FormData();
 
-    formData.append("title", title.trim());
-    formData.append("slug", slug.trim());
-    formData.append("parent", parent.trim());
-    formData.append("description", description.trim());
+    formData.append('title', title.trim());
+    formData.append('slug', slug.trim());
+    formData.append('parent', parent.trim());
+    formData.append('description', description.trim());
 
     // فقط در صورت انتخاب آیکون جدید
     if (iconFile) {
-      formData.append("icon", iconFile);
+      formData.append('icon', iconFile);
     }
 
     // تبدیل آرایه فیلترها به JSON
-    formData.append("filters", JSON.stringify(filters));
-    console.log("Filters in FormData after appends:", formData.get("filters"));
+    formData.append('filters', JSON.stringify(filters));
+    console.log('Filters in FormData after appends:', formData.get('filters'));
 
     try {
       setIsSubmitting(true);
 
-      console.log("Category ID:", category._id);
+      console.log('Category ID:', category._id);
 
       for (const [key, value] of formData.entries()) {
         console.log(key, value);
       }
-      console.log(
-        "Filters in FormData before sending request:",
-        formData.get("filters"),
-      );
+      console.log('Filters in FormData before sending request:', formData.get('filters'));
 
       const response = await updateCategory(category._id, formData);
-      console.log(
-        "Filters in FormData after sending request:",
-        formData.get("filters"),
-      );
+      console.log('Filters in FormData after sending request:', formData.get('filters'));
 
-      console.log("Update response:", response);
+      console.log('Update response:', response);
 
-      toast.success("دسته‌بندی با موفقیت ویرایش شد");
+      toast.success('دسته‌بندی با موفقیت ویرایش شد');
 
       resetForm();
       onClose();
     } catch (err) {
-      console.log("Full error:", err);
-      console.log("Error message:", err.message);
-      console.log("Error response:", err.response);
-      console.log("Error data:", err.response?.data);
+      console.log('Full error:', err);
+      console.log('Error message:', err.message);
+      console.log('Error response:', err.response);
+      console.log('Error data:', err.response?.data);
 
-      toast.error(err.message || "خطا در ویرایش دسته‌بندی");
+      toast.error(err.message || 'خطا در ویرایش دسته‌بندی');
     } finally {
       setIsSubmitting(false);
     }
@@ -150,11 +142,7 @@ const EditCategory = ({ isOpen, onClose, category }) => {
   return (
     <div>
       {isOpen && (
-        <ModalIndex
-          onClose={handleClose}
-          onSubmit={handleSubmit}
-          pending={isSubmitting}
-        >
+        <ModalIndex onClose={handleClose} onSubmit={handleSubmit} pending={isSubmitting}>
           <div className="max-h-[65vh] space-y-5 overflow-y-auto scrollbar-none">
             {/* Title */}
             <div>
@@ -172,9 +160,7 @@ const EditCategory = ({ isOpen, onClose, category }) => {
 
             {/* Slug */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-zinc-300">
-                Slug
-              </label>
+              <label className="mb-2 block text-sm font-medium text-zinc-300">Slug</label>
               <input
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
@@ -187,9 +173,7 @@ const EditCategory = ({ isOpen, onClose, category }) => {
 
             {/* Description */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-zinc-300">
-                توضیحات
-              </label>
+              <label className="mb-2 block text-sm font-medium text-zinc-300">توضیحات</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -208,9 +192,7 @@ const EditCategory = ({ isOpen, onClose, category }) => {
 
               <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-zinc-700 bg-zinc-800/40 p-6 text-center transition hover:border-purple-500 hover:bg-purple-500/5">
                 <span className="text-2xl text-purple-400">+</span>
-                <span className="text-sm text-zinc-300">
-                  انتخاب تصویر برای آپلود
-                </span>
+                <span className="text-sm text-zinc-300">انتخاب تصویر برای آپلود</span>
                 <span className="text-xs text-zinc-500">PNG, JPG, SVG</span>
 
                 <input
@@ -242,9 +224,7 @@ const EditCategory = ({ isOpen, onClose, category }) => {
                   <input
                     className="border border-zinc-700 p-2 rounded-sm"
                     value={filter.name}
-                    onChange={(e) =>
-                      updateFilter(index, "name", e.target.value)
-                    }
+                    onChange={(e) => updateFilter(index, 'name', e.target.value)}
                     placeholder="نام فیلتر"
                   />
 
@@ -254,10 +234,8 @@ const EditCategory = ({ isOpen, onClose, category }) => {
                     onChange={(e) =>
                       updateFilter(
                         index,
-                        "slug",
-                        e.target.value
-                          .toLowerCase()
-                          .replace(/[^a-z0-9_-]/g, "-"),
+                        'slug',
+                        e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, '-'),
                       )
                     }
                     placeholder="product-filter"
@@ -266,28 +244,24 @@ const EditCategory = ({ isOpen, onClose, category }) => {
 
                   <select
                     value={filter.type}
-                    onChange={(e) =>
-                      updateFilter(index, "type", e.target.value)
-                    }
+                    onChange={(e) => updateFilter(index, 'type', e.target.value)}
                     className="text-purple-500 text-sm bg-zinc-900"
                   >
                     <option value="">انتخاب نوع</option>
-                    <option value="selectbox">Select Box</option>{" "}
+                    <option value="selectbox">Select Box</option>{' '}
                     <option value="radio">Radio</option>
                   </select>
 
                   <textarea
                     className="border border-zinc-700 p-2 rounded-sm"
                     value={filter.description}
-                    onChange={(e) =>
-                      updateFilter(index, "description", e.target.value)
-                    }
+                    onChange={(e) => updateFilter(index, 'description', e.target.value)}
                     placeholder="توضیحات"
                   />
 
                   <input
                     className="border border-zinc-700 p-2 rounded-sm"
-                    value={filter.options.join(", ")}
+                    value={filter.options.join(', ')}
                     onChange={(e) => updateOptions(index, e.target.value)}
                     placeholder="قرمز، آبی، مشکی"
                   />

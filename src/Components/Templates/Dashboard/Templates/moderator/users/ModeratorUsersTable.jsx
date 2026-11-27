@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import Table from "../../../common/Table/index";
-import TableToolbar from "../../../common/Table/TableToolbar";
-import TableHead from "../../../common/Table/TableHead";
-import TableRow from "../../../common/Table/TableRow";
-import TableCell from "../../../common/Table/TableCell";
-import TableBody from "../../../common/Table/TableBody";
-import { RiAddLine } from "react-icons/ri";
-import { FiEdit2, FiTrash2 } from "react-icons/fi";
-import { toast } from "sonner";
-import useUsers from "../../../../../../lib/Hooks/useUsers";
-import { banUser, deleteUser } from "../../../../../../services/users.service";
-import Confirm from "../../../../../Common/Confirm";
-import toPersianDate from "../../../../../../lib/helpers/date";
-import { FaBan } from "react-icons/fa";
-import Pagination from "../../../../../Common/Pagination";
-import EditUserForm from "./EditUserForm";
+import React, { useState } from 'react';
+import Table from '../../../common/Table/index';
+import TableToolbar from '../../../common/Table/TableToolbar';
+import TableHead from '../../../common/Table/TableHead';
+import TableRow from '../../../common/Table/TableRow';
+import TableCell from '../../../common/Table/TableCell';
+import TableBody from '../../../common/Table/TableBody';
+import { RiAddLine } from 'react-icons/ri';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { toast } from 'sonner';
+import useUsers from '../../../../../../lib/Hooks/useUsers';
+import { banUser, deleteUser } from '../../../../../../services/users.service';
+import Confirm from '../../../../../Common/Confirm';
+import toPersianDate from '../../../../../../lib/helpers/date';
+import { FaBan } from 'react-icons/fa';
+import Pagination from '../../../../../Common/Pagination';
+import EditUserForm from './EditUserForm';
 
 const ModeratorUsersTable = () => {
-  const { users, pagination, page, setPage, isLoading, error, refetch } =
-    useUsers();
+  const { users, pagination, page, setPage, isLoading, error, refetch } = useUsers();
 
   const [banningUser, setBanningUser] = useState(null);
   const [isBanning, setIsBanning] = useState(false);
@@ -26,19 +25,19 @@ const ModeratorUsersTable = () => {
   const [editingUser, setEditingUser] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const roleLabels = { USER: "کاربر", ADMIN: "مدیر", SELLER: "فروشنده" };
+  const roleLabels = { USER: 'کاربر', ADMIN: 'مدیر', SELLER: 'فروشنده' };
 
   const handleBan = async () => {
     if (!banningUser) return;
 
     try {
       const res = await banUser(banningUser._id);
-      toast.success("کاربر با موفقیت بن شد");
+      toast.success('کاربر با موفقیت بن شد');
 
       setBanningUser(null);
       refetch();
     } catch (error) {
-      toast.error(error?.response?.data?.message || "خطا در بن کاربر");
+      toast.error(error?.response?.data?.message || 'خطا در بن کاربر');
     } finally {
       setIsBanning(false);
     }
@@ -89,25 +88,19 @@ const ModeratorUsersTable = () => {
         <TableBody>
           {isLoading && (
             <TableRow>
-              <TableCell className="text-purple-500">
-                درحال بارگذاری...
-              </TableCell>
+              <TableCell className="text-purple-500">درحال بارگذاری...</TableCell>
             </TableRow>
           )}
 
           {!isLoading && error && (
             <TableRow>
-              <TableCell className="text-red-500">
-                {error || "خطا در دریافت کاربران"}
-              </TableCell>
+              <TableCell className="text-red-500">{error || 'خطا در دریافت کاربران'}</TableCell>
             </TableRow>
           )}
 
           {!isLoading && !error && users.length === 0 && (
             <TableRow>
-              <TableCell className="text-purple-500">
-                هنوز کاربری ثبت نشده
-              </TableCell>
+              <TableCell className="text-purple-500">هنوز کاربری ثبت نشده</TableCell>
             </TableRow>
           )}
 
@@ -124,7 +117,7 @@ const ModeratorUsersTable = () => {
                   </TableCell>
 
                   <TableCell className="px-5 py-4 text-sm font-medium text-purple-500 underline">
-                    {user.name || "نام کاربر ثبت نشده"}
+                    {user.name || 'نام کاربر ثبت نشده'}
                   </TableCell>
                   <TableCell className="px-5 py-4 text-sm font-medium text-white">
                     {user.phone}
@@ -133,13 +126,13 @@ const ModeratorUsersTable = () => {
                     {toPersianDate(user.createdAt)}
                   </TableCell>
                   <TableCell className="px-5 py-4 text-xs font-medium text-white">
-                    {user.addresses[0] || "ثبت نشده"}
+                    {user.addresses[0] || 'ثبت نشده'}
                   </TableCell>
                   <TableCell className="px-5 py-4 text-xs font-medium text-white">
-                    {user.nationalCode || "ثبت نشده"}
+                    {user.nationalCode || 'ثبت نشده'}
                   </TableCell>
                   <TableCell className="px-5 py-4 text-sm font-medium text-white">
-                    {user.roles.map((role) => roleLabels[role]).join(" - ")}
+                    {user.roles.map((role) => roleLabels[role]).join(' - ')}
                   </TableCell>
 
                   <TableCell className="px-5 py-4">

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { RiCloseLine } from "react-icons/ri";
-import useCreateSubCategory from "../../../../../../lib/Hooks/useCreateSubCategory";
+import React, { useEffect, useState } from 'react';
+import { RiCloseLine } from 'react-icons/ri';
+import useCreateSubCategory from '../../../../../../lib/Hooks/useCreateSubCategory';
 
 const CreateSubCategoryModal = ({ isOpen, onClose, onSuccess }) => {
   const {
@@ -16,13 +16,13 @@ const CreateSubCategoryModal = ({ isOpen, onClose, onSuccess }) => {
   } = useCreateSubCategory(onClose);
 
   const inputStyle =
-    "w-full rounded-xl border border-zinc-700 bg-zinc-800/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-zinc-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20";
+    'w-full rounded-xl border border-zinc-700 bg-zinc-800/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-zinc-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20';
 
-  const inputLabel = "mb-2 block text-sm font-medium text-zinc-300";
+  const inputLabel = 'mb-2 block text-sm font-medium text-zinc-300';
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm m-0 invisible opacity-0 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm m-0 invisible opacity-0 ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
     >
       <div className="w-full p-5 max-w-lg overflow-auto scrollbar-none rounded-2xl border border-purple-500/20 bg-zinc-900 shadow-2xl shadow-purple-950/30 h-137">
         <div className="flex justify-between items-center border-b border-zinc-800 p-2">
@@ -113,42 +113,31 @@ const CreateSubCategoryModal = ({ isOpen, onClose, onSuccess }) => {
             </button>
 
             {formValues.filters.map((filter, index) => (
-              <div
-                key={index}
-                className="border border-zinc-700 p-4 rounded-xl space-y-5"
-              >
+              <div key={index} className="border border-zinc-700 p-4 rounded-xl space-y-5">
                 <input
                   value={filter.name}
                   placeholder="نام فیلتر"
-                  onChange={(e) =>
-                    handleFilterChange(index, "name", e.target.value)
-                  }
+                  onChange={(e) => handleFilterChange(index, 'name', e.target.value)}
                   className={inputStyle}
                 />
 
                 <input
                   value={filter.slug}
                   placeholder="Slug"
-                  onChange={(e) =>
-                    handleFilterChange(index, "slug", e.target.value)
-                  }
+                  onChange={(e) => handleFilterChange(index, 'slug', e.target.value)}
                   className={inputStyle}
                 />
 
                 <input
                   value={filter.description}
                   placeholder="توضیحات"
-                  onChange={(e) =>
-                    handleFilterChange(index, "description", e.target.value)
-                  }
+                  onChange={(e) => handleFilterChange(index, 'description', e.target.value)}
                   className={inputStyle}
                 />
 
                 <select
                   value={filter.type}
-                  onChange={(e) =>
-                    handleFilterChange(index, "type", e.target.value)
-                  }
+                  onChange={(e) => handleFilterChange(index, 'type', e.target.value)}
                   className="w-full text-purple-50 bg-zinc-800 h-10 rounded-md px-2"
                 >
                   <option value="radio">Radio</option>
@@ -158,9 +147,7 @@ const CreateSubCategoryModal = ({ isOpen, onClose, onSuccess }) => {
                 <input
                   className={inputStyle}
                   value={filter.optionsText}
-                  onChange={(e) =>
-                    handleFilterChange(index, "optionsText", e.target.value)
-                  }
+                  onChange={(e) => handleFilterChange(index, 'optionsText', e.target.value)}
                   placeholder="قرمز, آبی, مشکی"
                 />
 
@@ -189,7 +176,7 @@ const CreateSubCategoryModal = ({ isOpen, onClose, onSuccess }) => {
             disabled={isLoading}
             className="bg-purple-500/20 border border-purple-500/50 p-2 hover:bg-purple-500/30 disabled:opacity-50"
           >
-            {isLoading ? "در حال ثبت..." : "تایید"}
+            {isLoading ? 'در حال ثبت...' : 'تایید'}
           </button>
         </footer>
       </div>

@@ -1,22 +1,22 @@
-import { Link } from "react-router";
-import SectionTitle from "../Components/Common/SectionTitle";
-import InputField from "../Components/Templates/ContactUS/InputField";
-import { useState } from "react";
-import axios from "axios";
-import { toast } from "sonner";
-import { RiCheckFill } from "react-icons/ri";
-import { FaCheckCircle } from "react-icons/fa";
-import { contactusSchima } from "../Validators/contsctus";
-import { validate } from "../Validators";
-import { useContactUS } from "../lib/Hooks/useContactUS";
-import Maps from "../Components/Templates/ContactUS/Maps";
+import { Link } from 'react-router';
+import SectionTitle from '../Components/Common/SectionTitle';
+import InputField from '../Components/Templates/ContactUS/InputField';
+import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'sonner';
+import { RiCheckFill } from 'react-icons/ri';
+import { FaCheckCircle } from 'react-icons/fa';
+import { contactusSchima } from '../Validators/contsctus';
+import { validate } from '../Validators';
+import { useContactUS } from '../lib/Hooks/useContactUS';
+import Maps from '../Components/Templates/ContactUS/Maps';
 
 const ContactUSPage = () => {
   const { form, isSubmiting, changeHandler, submitHandler } = useContactUS({
-    name: "",
-    phone: "",
-    subject: "",
-    content: "",
+    name: '',
+    phone: '',
+    subject: '',
+    content: '',
   });
 
   return (
@@ -32,8 +32,7 @@ const ContactUSPage = () => {
       >
         <div className="w-full">
           <p className="mb-10 text-sm text-neutral-600">
-            کاربر محترم, برای پاسخگویی بهتر لطفا تمامی فیلد های زیر را تکمیل
-            کنید.
+            کاربر محترم, برای پاسخگویی بهتر لطفا تمامی فیلد های زیر را تکمیل کنید.
           </p>
           <div className="grid grid-cols-2 gap-5 **:w-full">
             <InputField
@@ -61,10 +60,7 @@ const ContactUSPage = () => {
             />
 
             <div className="col-span-2">
-              <label
-                htmlFor="contact-message"
-                className="text-xs select-none text-neutral-500"
-              >
+              <label htmlFor="contact-message" className="text-xs select-none text-neutral-500">
                 محتوا:
               </label>
               <textarea
@@ -87,20 +83,15 @@ const ContactUSPage = () => {
               onClick={submitHandler}
               disabled={isSubmiting}
               className={`bg-linear-to-t from-purple-600 px-4 py-2.5 rounded-md text-white duration-150 to-purple-400 max-w-max ${
-                isSubmiting
-                  ? "opacity-50 cursor-not-allowed"
-                  : "cursor-pointer hover:opacity-90"
+                isSubmiting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:opacity-90'
               }`}
             >
-              {isSubmiting ? "درحال ارسال..." : "ثبت و ارسال"}
+              {isSubmiting ? 'درحال ارسال...' : 'ثبت و ارسال'}
             </button>
           </div>
         </div>
         <div className="w-full">
-          <img
-            className="object-cover scale-80"
-            src="/assets/static/contact-us.png"
-          />
+          <img className="object-cover scale-80" src="/assets/static/contact-us.png" />
         </div>
       </div>
       <div className="space-y-10 my-10">

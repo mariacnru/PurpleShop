@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
-import { getAllCategories } from "../../../services/category.service";
-import {
-  getProductById,
-  updateProduct,
-} from "../../../services/product.service";
-import { toast } from "sonner";
-import useProducts from "../../../lib/Hooks/useProducts";
+import { useEffect, useState } from 'react';
+import { getAllCategories } from '../../../services/category.service';
+import { getProductById, updateProduct } from '../../../services/product.service';
+import { toast } from 'sonner';
+import useProducts from '../../../lib/Hooks/useProducts';
 
 const flattenCategories = (categories = []) => {
   return categories.flatMap((category) => [
@@ -19,10 +16,10 @@ const EditProductForm = ({ product, isOpen, setIsOpnen }) => {
   const { refetch } = useProducts();
 
   const [form, setForm] = useState({
-    name: "",
-    slug: "",
-    description: "",
-    subCategory: "",
+    name: '',
+    slug: '',
+    description: '',
+    subCategory: '',
     sellers: [],
     filterValues: {},
     customFields: {},
@@ -34,10 +31,10 @@ const EditProductForm = ({ product, isOpen, setIsOpnen }) => {
     if (!product) return;
 
     setForm({
-      name: product.name || "",
-      slug: product.slug || "",
-      description: product.description || "",
-      subCategory: product.subCategory || "",
+      name: product.name || '',
+      slug: product.slug || '',
+      description: product.description || '',
+      subCategory: product.subCategory || '',
       sellers: product.sellers || [],
       filterValues: product.filterValues || {},
       customFields: product.customFields || {},
@@ -72,16 +69,14 @@ const EditProductForm = ({ product, isOpen, setIsOpnen }) => {
 
           const parentId = current.parent;
 
-          current = parentId
-            ? allCategories.find((category) => category._id === parentId)
-            : null;
+          current = parentId ? allCategories.find((category) => category._id === parentId) : null;
         }
 
         if (isActive) {
           setCategoryPath(path);
         }
       } catch (error) {
-        console.error("خطا در دریافت دسته‌بندی‌ها:", error);
+        console.error('خطا در دریافت دسته‌بندی‌ها:', error);
 
         if (isActive) setCategoryPath([]);
       }
@@ -110,52 +105,50 @@ const EditProductForm = ({ product, isOpen, setIsOpnen }) => {
 
   // ذخیره اطلاعات فرم (فعلاً آزمایشی)
 
-const handleSubmit = async () => {
-  try {
-    const formData = new FormData();
+  const handleSubmit = async () => {
+    try {
+      const formData = new FormData();
 
-    formData.append("name", form.name);
-    formData.append("slug", form.slug);
-    formData.append("description", form.description);
-    formData.append("subCategory", form.subCategory);
+      formData.append('name', form.name);
+      formData.append('slug', form.slug);
+      formData.append('description', form.description);
+      formData.append('subCategory', form.subCategory);
 
-    const sellersPayload = form.sellers.map((seller) => ({
-      id: seller._id || seller.id,
-      seller:
-        typeof seller.seller === "object" ? seller.seller._id : seller.seller,
-      price: Number(seller.price),
-      stock: Number(seller.stock),
-    }));
+      const sellersPayload = form.sellers.map((seller) => ({
+        id: seller._id || seller.id,
+        seller: typeof seller.seller === 'object' ? seller.seller._id : seller.seller,
+        price: Number(seller.price),
+        stock: Number(seller.stock),
+      }));
 
-    formData.set("sellers", JSON.stringify(sellersPayload));
-    formData.set("filterValues", JSON.stringify(form.filterValues));
-    formData.set("customFields", JSON.stringify(form.customFields));
-    formData.set("images", JSON.stringify(form.images));
+      formData.set('sellers', JSON.stringify(sellersPayload));
+      formData.set('filterValues', JSON.stringify(form.filterValues));
+      formData.set('customFields', JSON.stringify(form.customFields));
+      formData.set('images', JSON.stringify(form.images));
 
-    console.log("1. Sending update request");
+      console.log('1. Sending update request');
 
-    const result = await updateProduct(product._id, formData);
+      const result = await updateProduct(product._id, formData);
 
-    console.log("2. Update response:", result);
+      console.log('2. Update response:', result);
 
-    toast.success("محصول با موفقیت آپدیت شد");
+      toast.success('محصول با موفقیت آپدیت شد');
 
-    setIsOpnen(false);
-    refetch();
-  } catch (error) {
-    console.error("Update failed:", error);
-    console.error("Response:", error.response?.data);
+      setIsOpnen(false);
+      refetch();
+    } catch (error) {
+      console.error('Update failed:', error);
+      console.error('Response:', error.response?.data);
 
-    toast.error(error.response?.data?.message || "خطا در آپدیت محصول");
-  }
-};
-
+      toast.error(error.response?.data?.message || 'خطا در آپدیت محصول');
+    }
+  };
 
   if (!product) return null;
 
   return (
     <div
-      className={`${isOpen ? "visible opacity-100" : "invisible opacity-0"} absolute inset-0 z-50 bg-black/70 p-4 backdrop-blur-sm overflow-hidden transition-opacity`}
+      className={`${isOpen ? 'visible opacity-100' : 'invisible opacity-0'} absolute inset-0 z-50 bg-black/70 p-4 backdrop-blur-sm overflow-hidden transition-opacity`}
     >
       <div
         dir="rtl"
@@ -164,9 +157,7 @@ const handleSubmit = async () => {
         {/* هدر مودال */}
         <div className="flex shrink-0 items-center justify-between border-b border-zinc-800 bg-zinc-900/80 px-4 py-2">
           <div>
-            <h3 className="font-semibold text-zinc-100">
-              فرم ویرایش اطلاعات محصول
-            </h3>
+            <h3 className="font-semibold text-zinc-100">فرم ویرایش اطلاعات محصول</h3>
           </div>
 
           <button
@@ -195,7 +186,7 @@ const handleSubmit = async () => {
 
                 <input
                   id="productId"
-                  value={product._id || ""}
+                  value={product._id || ''}
                   readOnly
                   className="border border-zinc-800 bg-zinc-900/60  rounded-sm p-2 w-full text-zinc-400"
                 />
@@ -251,9 +242,7 @@ const handleSubmit = async () => {
 
             {/* مسیر دسته‌بندی */}
             <div className="space-y-3">
-              <label className="block text-sm text-zinc-300">
-                مسیر دسته‌بندی محصول
-              </label>
+              <label className="block text-sm text-zinc-300">مسیر دسته‌بندی محصول</label>
 
               <nav
                 dir="rtl"
@@ -266,8 +255,8 @@ const handleSubmit = async () => {
                       <span
                         className={
                           index === categoryPath.length - 1
-                            ? "text-sm font-medium text-purple-400"
-                            : "text-sm text-zinc-400"
+                            ? 'text-sm font-medium text-purple-400'
+                            : 'text-sm text-zinc-400'
                         }
                       >
                         {category.title}
@@ -281,9 +270,7 @@ const handleSubmit = async () => {
                     </div>
                   ))
                 ) : (
-                  <span className="text-sm text-zinc-500">
-                    دسته‌بندی پیدا نشد
-                  </span>
+                  <span className="text-sm text-zinc-500">دسته‌بندی پیدا نشد</span>
                 )}
               </nav>
             </div>
@@ -305,7 +292,7 @@ const handleSubmit = async () => {
                   <label>شناسه فروشنده</label>
                   <input
                     type="text"
-                    value={seller._id || seller.id || ""}
+                    value={seller._id || seller.id || ''}
                     readOnly
                     className="w-full rounded-sm border border-zinc-800 bg-zinc-900/60 p-2 text-zinc-400"
                   />
@@ -362,9 +349,7 @@ const handleSubmit = async () => {
           <div className="">
             <div className="flex items-center gap-2">
               <div className="w-1 h-4 bg-purple-500 rounded-full"></div>
-              <h3 className="text-sm text-purple-500">
-                ویژگی های فیلتری و سفارشی
-              </h3>
+              <h3 className="text-sm text-purple-500">ویژگی های فیلتری و سفارشی</h3>
             </div>
 
             <div className="flex items-center gap-2">
@@ -374,17 +359,14 @@ const handleSubmit = async () => {
             <div className="grid grid-cols-2">
               {Object.entries(form.filterValues || {}).map(([key, value]) => (
                 <div key={key} className="space-y-2">
-                  <label
-                    htmlFor={`filter-${key}`}
-                    className="block text-sm text-zinc-300"
-                  >
+                  <label htmlFor={`filter-${key}`} className="block text-sm text-zinc-300">
                     {key}
                   </label>
 
                   <input
                     id={`filter-${key}`}
                     type="text"
-                    value={value ?? ""}
+                    value={value ?? ''}
                     onChange={(e) => {
                       const { value } = e.target;
 
@@ -409,17 +391,14 @@ const handleSubmit = async () => {
             <div className="grid grid-cols-2 gap-2">
               {Object.entries(form.customFields || {}).map(([key, value]) => (
                 <div key={key} className="space-y-2">
-                  <label
-                    htmlFor={`filter-${key}`}
-                    className="block text-sm text-zinc-300"
-                  >
+                  <label htmlFor={`filter-${key}`} className="block text-sm text-zinc-300">
                     {key}
                   </label>
 
                   <input
                     id={`filter-${key}`}
                     type="text"
-                    value={value ?? ""}
+                    value={value ?? ''}
                     onChange={(e) => {
                       const { value } = e.target;
 
@@ -467,7 +446,7 @@ const handleSubmit = async () => {
             type="button"
             onClick={() => {
               setIsOpnen(false);
-              console.log("close modal");
+              console.log('close modal');
             }}
             className="rounded-lg border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition hover:bg-zinc-800"
           >

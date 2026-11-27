@@ -1,19 +1,19 @@
-import React, { useReducer, useState } from "react";
-import ModalIndex from "../../../common/Modal/ModalIndex";
-import { filtersReducer } from "../../../../../../lib/reducers/category/filterReducer";
-import { useCateoryForm } from "../../../../../../lib/Hooks/useCategoryForm";
-import { toast } from "sonner";
+import React, { useReducer, useState } from 'react';
+import ModalIndex from '../../../common/Modal/ModalIndex';
+import { filtersReducer } from '../../../../../../lib/reducers/category/filterReducer';
+import { useCateoryForm } from '../../../../../../lib/Hooks/useCategoryForm';
+import { toast } from 'sonner';
 
 const CreateCategoryModal = ({ isOpen, onClose }) => {
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState('');
+  const [slug, setSlug] = useState('');
+  const [description, setDescription] = useState('');
   const [iconFile, setIconFile] = useState(null);
   const emptyFilter = {
-    name: "",
-    slug: "",
-    type: "",
-    description: "",
+    name: '',
+    slug: '',
+    type: '',
+    description: '',
     options: [],
   };
   const [filters, setFilters] = useState([]);
@@ -28,9 +28,7 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
 
   const updateFilter = (index, field, value) => {
     setFilters((prev) =>
-      prev.map((filter, i) =>
-        i === index ? { ...filter, [field]: value } : filter,
-      ),
+      prev.map((filter, i) => (i === index ? { ...filter, [field]: value } : filter)),
     );
   };
 
@@ -40,7 +38,7 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
         i === index
           ? {
               ...filter,
-              options: value.split(",").map((item) => item.trim()),
+              options: value.split(',').map((item) => item.trim()),
             }
           : filter,
       ),
@@ -48,22 +46,22 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
   };
 
   const { isSubmitting, error, submit } = useCateoryForm(() => {
-    toast.success("دسته بندی جدید با موفقیت ایجاد شد");
+    toast.success('دسته بندی جدید با موفقیت ایجاد شد');
     resetForm();
     onClose();
   });
 
   const resetForm = () => {
-    setTitle("");
-    setSlug("");
-    setDescription("");
+    setTitle('');
+    setSlug('');
+    setDescription('');
     setIconFile(null);
     setFilters([]);
   };
 
   const handleSubmit = async () => {
     if (!title.trim() || !slug.trim() || !description.trim()) {
-      toast.error("عنوان, لینک و توضیحات ضروری هستند");
+      toast.error('عنوان, لینک و توضیحات ضروری هستند');
       return;
     }
 
@@ -86,11 +84,7 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
   return (
     <div>
       {isOpen && (
-        <ModalIndex
-          onClose={handleClose}
-          onSubmit={handleSubmit}
-          pending={isSubmitting}
-        >
+        <ModalIndex onClose={handleClose} onSubmit={handleSubmit} pending={isSubmitting}>
           <div className="max-h-[65vh] space-y-5 overflow-y-auto scrollbar-none">
             {/* Title */}
             <div>
@@ -108,9 +102,7 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
 
             {/* Slug */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-zinc-300">
-                Slug
-              </label>
+              <label className="mb-2 block text-sm font-medium text-zinc-300">Slug</label>
               <input
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
@@ -123,9 +115,7 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
 
             {/* Description */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-zinc-300">
-                توضیحات
-              </label>
+              <label className="mb-2 block text-sm font-medium text-zinc-300">توضیحات</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -144,9 +134,7 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
 
               <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-zinc-700 bg-zinc-800/40 p-6 text-center transition hover:border-purple-500 hover:bg-purple-500/5">
                 <span className="text-2xl text-purple-400">+</span>
-                <span className="text-sm text-zinc-300">
-                  انتخاب تصویر برای آپلود
-                </span>
+                <span className="text-sm text-zinc-300">انتخاب تصویر برای آپلود</span>
                 <span className="text-xs text-zinc-500">PNG, JPG, SVG</span>
 
                 <input
@@ -178,9 +166,7 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
                   <input
                     className="border border-zinc-700 p-2 rounded-sm"
                     value={filter.name}
-                    onChange={(e) =>
-                      updateFilter(index, "name", e.target.value)
-                    }
+                    onChange={(e) => updateFilter(index, 'name', e.target.value)}
                     placeholder="نام فیلتر"
                   />
 
@@ -190,10 +176,8 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
                     onChange={(e) =>
                       updateFilter(
                         index,
-                        "slug",
-                        e.target.value
-                          .toLowerCase()
-                          .replace(/[^a-z0-9_-]/g, "-"),
+                        'slug',
+                        e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, '-'),
                       )
                     }
                     placeholder="product-filter"
@@ -202,28 +186,24 @@ const CreateCategoryModal = ({ isOpen, onClose }) => {
 
                   <select
                     value={filter.type}
-                    onChange={(e) =>
-                      updateFilter(index, "type", e.target.value)
-                    }
+                    onChange={(e) => updateFilter(index, 'type', e.target.value)}
                     className="text-purple-500 text-sm bg-zinc-900"
                   >
                     <option value="">انتخاب نوع</option>
-                    <option value="selectbox">Select Box</option>{" "}
+                    <option value="selectbox">Select Box</option>{' '}
                     <option value="radio">Radio</option>
                   </select>
 
                   <textarea
                     className="border border-zinc-700 p-2 rounded-sm"
                     value={filter.description}
-                    onChange={(e) =>
-                      updateFilter(index, "description", e.target.value)
-                    }
+                    onChange={(e) => updateFilter(index, 'description', e.target.value)}
                     placeholder="توضیحات"
                   />
 
                   <input
                     className="border border-zinc-700 p-2 rounded-sm"
-                    value={filter.options.join(", ")}
+                    value={filter.options.join(', ')}
                     onChange={(e) => updateOptions(index, e.target.value)}
                     placeholder="قرمز، آبی، مشکی"
                   />

@@ -1,13 +1,7 @@
-
-import React, { useState } from "react";
-import useCategories from "../../../../lib/Hooks/useCategories";
-import {
-  TbCategory,
-  TbChevronLeft,
-  TbChevronRight,
-  TbX,
-} from "react-icons/tb";
-import { Link } from "react-router";
+import React, { useState } from 'react';
+import useCategories from '../../../../lib/Hooks/useCategories';
+import { TbCategory, TbChevronLeft, TbChevronRight, TbX } from 'react-icons/tb';
+import { Link } from 'react-router';
 
 const MobileCategoryMenu = () => {
   const { categories = [], isLoading } = useCategories();
@@ -16,14 +10,10 @@ const MobileCategoryMenu = () => {
   const [path, setPath] = useState([]);
 
   // Current categories based on navigation level
-  const currentCategories = path.length
-    ? path[path.length - 1].subCategories || []
-    : categories;
+  const currentCategories = path.length ? path[path.length - 1].subCategories || [] : categories;
 
   // Current title
-  const currentTitle = path.length
-    ? path[path.length - 1].title
-    : "دسته‌بندی محصولات";
+  const currentTitle = path.length ? path[path.length - 1].title : 'دسته‌بندی محصولات';
 
   // Navigate into subcategories
   const handleNavigate = (category) => {
@@ -43,9 +33,7 @@ const MobileCategoryMenu = () => {
 
   // Build category URL
   const getCategoryUrl = (category) => {
-    const slugs = [...path, category]
-      .map((item) => item.slug)
-      .join("/");
+    const slugs = [...path, category].map((item) => item.slug).join('/');
 
     return `/category/${slugs}`;
   };
@@ -70,14 +58,13 @@ const MobileCategoryMenu = () => {
         id="mobile-category-menu"
         className={`absolute right-0 top-full z-50 mt-3 w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/40 transition-all duration-300 ease-out ${
           isOpen
-            ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-2 opacity-0 pointer-events-none"
+            ? 'visible translate-y-0 opacity-100'
+            : 'invisible -translate-y-2 opacity-0 pointer-events-none'
         }`}
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-zinc-800 p-4">
           <div className="flex items-center gap-2 min-w-0">
-
             {path.length > 0 && (
               <button
                 type="button"
@@ -94,9 +81,7 @@ const MobileCategoryMenu = () => {
                 EXPLORE CATEGORIES
               </span>
 
-              <h3 className="truncate text-sm font-bold text-white">
-                {currentTitle}
-              </h3>
+              <h3 className="truncate text-sm font-bold text-white">{currentTitle}</h3>
             </div>
           </div>
 
@@ -127,13 +112,9 @@ const MobileCategoryMenu = () => {
 
                 <button
                   type="button"
-                  onClick={() =>
-                    setPath((prev) => prev.slice(0, index + 1))
-                  }
+                  onClick={() => setPath((prev) => prev.slice(0, index + 1))}
                   className={`shrink-0 transition-colors ${
-                    index === path.length - 1
-                      ? "text-purple-400"
-                      : "hover:text-purple-400"
+                    index === path.length - 1 ? 'text-purple-400' : 'hover:text-purple-400'
                   }`}
                 >
                   {item.title}
@@ -145,29 +126,22 @@ const MobileCategoryMenu = () => {
 
         {/* Categories */}
         <div className="max-h-[60dvh] min-h-40 overflow-y-auto p-3 custom-scrollbar">
-
           {isLoading ? (
             <div className="space-y-3 p-2">
               {[1, 2, 3, 4].map((item) => (
-                <div
-                  key={item}
-                  className="h-12 animate-pulse rounded-lg bg-zinc-800"
-                />
+                <div key={item} className="h-12 animate-pulse rounded-lg bg-zinc-800" />
               ))}
             </div>
           ) : currentCategories.length === 0 ? (
             <div className="flex flex-col items-center justify-center gap-2 py-10 text-center">
               <TbCategory size={30} className="text-zinc-600" />
 
-              <p className="text-sm text-zinc-400">
-                زیر دسته‌بندی‌ای یافت نشد
-              </p>
+              <p className="text-sm text-zinc-400">زیر دسته‌بندی‌ای یافت نشد</p>
             </div>
           ) : (
             <div className="space-y-1">
               {currentCategories.map((category) => {
-                const hasChildren =
-                  category.subCategories?.length > 0;
+                const hasChildren = category.subCategories?.length > 0;
 
                 return (
                   <div key={category._id}>
@@ -221,4 +195,3 @@ const MobileCategoryMenu = () => {
 };
 
 export default MobileCategoryMenu;
-

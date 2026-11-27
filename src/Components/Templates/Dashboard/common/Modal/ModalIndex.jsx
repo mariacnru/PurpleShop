@@ -1,5 +1,5 @@
-import React from "react";
-import { CgClose } from "react-icons/cg";
+import React from 'react';
+import { CgClose } from 'react-icons/cg';
 
 const ModalIndex = ({ children, title, onClose, onSubmit, pending }) => {
   return (
@@ -33,9 +33,8 @@ const ModalIndex = ({ children, title, onClose, onSubmit, pending }) => {
             disabled={pending}
             className="rounded-lg border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-400 transition-all hover:border-purple-500/50 hover:bg-purple-500/20 hover:text-purple-300"
           >
-            {pending ? "درحال ثبت..." : "تایید"}
+            {pending ? 'درحال ثبت...' : 'تایید'}
           </button>
-
         </footer>
       </div>
     </div>

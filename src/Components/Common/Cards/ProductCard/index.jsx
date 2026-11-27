@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
-import { TbShoppingBag, TbHeart, TbStarFilled } from "react-icons/tb";
-import { formatPrice } from "./../../../../lib/helpers/price";
-import { Link } from "react-router";
+import React, { useEffect } from 'react';
+import { TbShoppingBag, TbHeart, TbStarFilled } from 'react-icons/tb';
+import { formatPrice } from './../../../../lib/helpers/price';
+import { Link } from 'react-router';
 
 const ProductCard = ({ product }) => {
   const sellerPrice = product?.sellers?.[0]?.price;
 
   return (
     <Link
-    onClick={()=> console.log(product._id)}
       to={`/product/${product?.slug}`}
       className="group relative block w-full h-full bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-purple-500/40 transition-all duration-300"
     >
@@ -33,7 +32,7 @@ const ProductCard = ({ product }) => {
       <div className="h-44 bg-zinc-950/60 p-4 flex items-center justify-center overflow-hidden">
         <img
           src={`https://shopino.pachim.run/images/products/${product?.images[0]}`}
-          alt={product?.name || "محصول"}
+          alt={product?.name || 'محصول'}
           loading="lazy"
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
         />
@@ -42,16 +41,12 @@ const ProductCard = ({ product }) => {
       {/* Content */}
       <div className="p-4">
         {/* Rating */}
-        <div className="flex items-center gap-1 text-amber-400 mb-2">
+        <div className="flex items-center gap-1 text-purple-400 mb-2">
           <TbStarFilled size={13} />
 
-          <span className="text-xs font-medium">
-            {product?.averageRating || 0}
-          </span>
+          <span className="text-xs font-medium">{product?.averageRating || 0}</span>
 
-          <span className="text-xs text-zinc-600">
-            ({product?.commentCount || 0} نظر)
-          </span>
+          <span className="text-xs text-zinc-600">({product?.commentCount || 0} نظر)</span>
         </div>
 
         {/* Title */}
@@ -64,14 +59,14 @@ const ProductCard = ({ product }) => {
           <div className="flex flex-col gap-1 min-w-0">
             <div className="flex items-center gap-1.5">
               <span className="text-base font-bold text-white truncate">
-                {sellerPrice != null ? formatPrice(sellerPrice) : "نامشخص"}
+                {sellerPrice != null ? formatPrice(sellerPrice) : 'نامشخص'}
               </span>
 
               <span className="text-[10px] text-zinc-500 shrink-0">تومان</span>
             </div>
 
             <span className="text-xs text-zinc-500">
-              {product?.stock > 0 ? `${product.stock} عدد موجود` : "ناموجود"}
+              {product?.stock > 0 ? `${product.stock} عدد موجود` : 'ناموجود'}
             </span>
           </div>
 

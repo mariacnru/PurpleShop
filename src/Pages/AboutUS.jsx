@@ -1,10 +1,10 @@
-import React from "react";
-import SectionTitle from "../Components/Common/SectionTitle";
-import { LOREM_TEXT } from "../lib/constants.js";
-import Accordion from "../Components/Common/Accordion";
-import aboutUsData from "../Components/Templates/AboutUS/settings/data";
-import { Link } from "react-router";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import React from 'react';
+import SectionTitle from '../Components/Common/SectionTitle';
+import { LOREM_TEXT } from '../lib/constants.js';
+import Accordion from '../Components/Common/Accordion';
+import aboutUsData from '../Components/Templates/AboutUS/settings/data';
+import { Link } from 'react-router';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const AboutUSPage = () => {
   return (
@@ -20,17 +20,14 @@ const AboutUSPage = () => {
         <SectionTitle text="پاسخ خود را پیدا نکردید؟" />
         <p>
           شما می‌توانید
-          <Link
-            className="inline-block px-1 font-bold underline text-purple-500"
-            to="/contact-us"
-          >
+          <Link className="inline-block px-1 font-bold underline text-purple-500" to="/contact-us">
             از طریق این صفحه
           </Link>
           با ما تماس بگیرید و سوال خود را از تیم فنی شاپینو بپرسید !
         </p>
 
         <Link
-          to={"/contact-us"}
+          to={'/contact-us'}
           className="flex-ic text-sm mt-4 max-w-max gap-2 px-4 py-2.5 rounded-md bg-purple-500 text-white"
         >
           <FaExternalLinkAlt />

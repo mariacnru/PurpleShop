@@ -1,16 +1,16 @@
-import React from "react";
-import { FiAlertTriangle, FiX } from "react-icons/fi";
+import React from 'react';
+import { FiAlertTriangle, FiX } from 'react-icons/fi';
 
 const Confirm = ({
   isOpen,
   onClose,
   onConfirm,
-  title = "حذف محصول",
-  message = "آیا از حذف این محصول اطمینان دارید؟ این عملیات قابل بازگشت نیست.",
+  title = 'حذف محصول',
+  message = 'آیا از حذف این محصول اطمینان دارید؟ این عملیات قابل بازگشت نیست.',
 }) => {
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm m-0 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm m-0 ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
     >
       <div className="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-950 p-6 shadow-2xl shadow-purple-950/20">
         {/* Header */}

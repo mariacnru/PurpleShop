@@ -1,14 +1,14 @@
-import React from "react";
-import Variant from "./Variant";
+import React from 'react';
+import Variant from './Variant';
 
-const ProductVariants = () => {
+const ProductVariants = ({ fields }) => {
   return (
     <div className="space-y-3">
       <p className="text-xs font-black text-zinc-600">ویژگی‌ها:</p>
 
       <div className="grid grid-cols-3 gap-1.5">
-        {Array.from({ length: 6 }).map((variant) => (
-          <Variant />
+        {fields?.map((variant) => (
+          <Variant item={variant} />
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { CgHello } from "react-icons/cg";
-import { Link } from "react-router";
-import { useAuth } from "../lib/Hooks/useAuth";
-import { useEffect, useRef } from "react";
+import { CgHello } from 'react-icons/cg';
+import { Link } from 'react-router';
+import { useAuth } from '../lib/Hooks/useAuth';
+import { useEffect, useRef } from 'react';
 
 const LoginPage = () => {
   const {
@@ -23,10 +23,7 @@ const LoginPage = () => {
   }, [isSendOtp]);
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-6 bg-zinc-900 p-5 rounded-2xl sm:w-[426px]"
-    >
+    <form onSubmit={handleSubmit} className="space-y-6 bg-zinc-900 p-5 rounded-2xl sm:w-[426px]">
       <header className="text-center flex items-center justify-center flex-col gap-2">
         <h1 className="font-bold text-zinc-800 dark:text-zinc-100 text-xl flex items-center gap-2">
           خوش برگشتید <CgHello />
@@ -63,17 +60,14 @@ const LoginPage = () => {
                 </button>
               ) : (
                 <p className="text-xs">
-                  اعتبار کد تا{" "}
-                  <span className="font-medium">{getFormatedTime()}</span>
+                  اعتبار کد تا <span className="font-medium">{getFormatedTime()}</span>
                 </p>
               )}
             </div>
           </>
         ) : (
           <>
-            <p className="text-xs font-normal">
-              لطفا شماره موبایل خود را وارد کنید
-            </p>
+            <p className="text-xs font-normal">لطفا شماره موبایل خود را وارد کنید</p>
 
             <input
               ref={inputRef}
@@ -91,11 +85,11 @@ const LoginPage = () => {
       <footer className="space-y-3 flex items-center justify-center flex-col">
         <button
           className={`h-10 text-sm flex items-center w-full duration-150 cursor-pointer justify-center bg-purple-600 hover:bg-purple-700 text-white rounded-lg focus-within:ring-4 ring-purple-500/30 active:scale-100! hover:scale-103 hover:shadow-lg shadow-purple-500/20
-            ${isSendOtp && isExpired && "opacity-50"}
+            ${isSendOtp && isExpired && 'opacity-50'}
           `}
           disabled={isSendOtp && isExpired}
         >
-          {isSendOtp ? " ثبت کد" : "ارسال کد"}
+          {isSendOtp ? ' ثبت کد' : 'ارسال کد'}
         </button>
 
         <div className="space-y-1 text-center mt-4">
@@ -105,7 +99,7 @@ const LoginPage = () => {
 
           <Link
             className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 duration-150 text-center mx-auto max-w-max! text-xs"
-            to={"/"}
+            to={'/'}
           >
             بازگشت
           </Link>

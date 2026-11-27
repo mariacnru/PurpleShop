@@ -6,6 +6,7 @@ const useProduct = (productSlug) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
+
   const fetchData = async () => {
     try {
       setIsLoading(true);

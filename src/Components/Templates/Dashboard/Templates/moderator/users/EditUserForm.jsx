@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { FiX, FiUser, FiMapPin, FiShield, FiInfo } from "react-icons/fi";
-import { editUser } from "../../../../../../services/users.service";
-import { toast } from "sonner";
-import useUsers from "../../../../../../lib/Hooks/useUsers";
+import React, { useEffect, useState } from 'react';
+import { FiX, FiUser, FiMapPin, FiShield, FiInfo } from 'react-icons/fi';
+import { editUser } from '../../../../../../services/users.service';
+import { toast } from 'sonner';
+import useUsers from '../../../../../../lib/Hooks/useUsers';
 
 const EditUserForm = ({ isOpen, user, onClose, refetch }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    nationalCode: "",
-    cardNumber: "",
+    name: '',
+    nationalCode: '',
+    cardNumber: '',
   });
 
   useEffect(() => {
     if (user) {
       setFormData({
-        name: user.name || "",
-        nationalCode: user.nationalCode || "",
-        cardNumber: user.cardNumber || "",
+        name: user.name || '',
+        nationalCode: user.nationalCode || '',
+        cardNumber: user.cardNumber || '',
       });
     }
   }, [user]);
@@ -31,55 +31,48 @@ const EditUserForm = ({ isOpen, user, onClose, refetch }) => {
   };
 
   const systemInfo = [
-    { label: "شناسه کاربر", value: user?._id },
+    { label: 'شناسه کاربر', value: user?._id },
     {
-      label: "تاریخ ثبت‌نام",
-      value: user?.createdAt
-        ? new Date(user.createdAt).toLocaleString("fa-IR")
-        : "-",
+      label: 'تاریخ ثبت‌نام',
+      value: user?.createdAt ? new Date(user.createdAt).toLocaleString('fa-IR') : '-',
     },
     {
-      label: "آخرین بروزرسانی",
-      value: user?.updatedAt
-        ? new Date(user.updatedAt).toLocaleString("fa-IR")
-        : "-",
+      label: 'آخرین بروزرسانی',
+      value: user?.updatedAt ? new Date(user.updatedAt).toLocaleString('fa-IR') : '-',
     },
-    { label: "Version", value: user?.__v ?? 0 },
+    { label: 'Version', value: user?.__v ?? 0 },
   ];
 
   const handleSubmit = async () => {
-    if (
-      formData.nationalCode.length !== 10 ||
-      formData.cardNumber.length !== 16
-    ) {
-      toast.error("کد ملی باید 10 رقم و شماره کارت باید 16 رقم باشد");
+    if (formData.nationalCode.length !== 10 || formData.cardNumber.length !== 16) {
+      toast.error('کد ملی باید 10 رقم و شماره کارت باید 16 رقم باشد');
       return;
     }
 
     try {
       const res = await editUser(formData);
       console.log(res);
-      console.log("Selected user:", user?._id);
-      console.log("Updated user:", res.data.data.user._id);
+      console.log('Selected user:', user?._id);
+      console.log('Updated user:', res.data.data.user._id);
       await refetch();
 
       onClose();
     } catch (error) {
-      console.log("Status:", error.response?.status);
-      console.log("Response:", error.response?.data);
-      console.log("Request:", error.config?.data);
+      console.log('Status:', error.response?.status);
+      console.log('Response:', error.response?.data);
+      console.log('Request:', error.config?.data);
     }
   };
 
   const inputClass =
-    "w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-purple-500";
+    'w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-purple-500';
 
-  const labelClass = "mb-2 block text-sm text-zinc-400";
+  const labelClass = 'mb-2 block text-sm text-zinc-400';
 
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm transition-all duration-300 ${
-        isOpen ? "visible opacity-100" : "invisible opacity-0"
+        isOpen ? 'visible opacity-100' : 'invisible opacity-0'
       }`}
     >
       <div className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl">
@@ -87,9 +80,7 @@ const EditUserForm = ({ isOpen, user, onClose, refetch }) => {
         <div className="flex items-center justify-between border-b border-zinc-800 px-6 py-5">
           <div>
             <h2 className="text-lg font-bold text-white">ویرایش کاربر</h2>
-            <p className="mt-1 text-xs text-zinc-500">
-              مدیریت اطلاعات حساب کاربری
-            </p>
+            <p className="mt-1 text-xs text-zinc-500">مدیریت اطلاعات حساب کاربری</p>
           </div>
 
           <button
@@ -124,7 +115,7 @@ const EditUserForm = ({ isOpen, user, onClose, refetch }) => {
               <div>
                 <label className={labelClass}>شماره موبایل</label>
                 <input
-                  defaultValue={user?.phone || ""}
+                  defaultValue={user?.phone || ''}
                   className={inputClass}
                   dir="ltr"
                   placeholder="09xxxxxxxxx"
@@ -197,7 +188,7 @@ const EditUserForm = ({ isOpen, user, onClose, refetch }) => {
                     key={index}
                     className="rounded-xl border border-zinc-800 bg-zinc-900 p-4 text-sm text-zinc-300"
                   >
-                    {typeof address === "string"
+                    {typeof address === 'string'
                       ? address
                       : address.address || JSON.stringify(address)}
                   </div>
@@ -219,10 +210,7 @@ const EditUserForm = ({ isOpen, user, onClose, refetch }) => {
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {systemInfo.map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900 p-4"
-                >
+                <div key={item.label} className="rounded-xl border border-zinc-800 bg-zinc-900 p-4">
                   <span className="text-xs text-zinc-500">{item.label}</span>
 
                   <p className="mt-2 break-all text-sm text-zinc-300" dir="ltr">

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Drawer from "../Drawer/Drawer";
-import ProductDrawerInput from "./ProductDrawerInput";
-import useCategories from "../../../../../lib/Hooks/useCategories";
-import CascadeCategories from "./cascadeCategories";
-import useProductForm from "../../../../../lib/Hooks/useProductForm";
-import createProduct from "../../../../../services/product.service";
-import { toast } from "sonner";
-import DynamicKeyValueFields from "./DynamicKeyValueFields";
-import SellerFields from "./SellerFields";
-import ImageUploadField from "./ImageUploadField";
-import useProducts from "../../../../../lib/Hooks/useProducts";
+import React, { useEffect, useState } from 'react';
+import Drawer from '../Drawer/Drawer';
+import ProductDrawerInput from './ProductDrawerInput';
+import useCategories from '../../../../../lib/Hooks/useCategories';
+import CascadeCategories from './cascadeCategories';
+import useProductForm from '../../../../../lib/Hooks/useProductForm';
+import createProduct from '../../../../../services/product.service';
+import { toast } from 'sonner';
+import DynamicKeyValueFields from './DynamicKeyValueFields';
+import SellerFields from './SellerFields';
+import ImageUploadField from './ImageUploadField';
+import useProducts from '../../../../../lib/Hooks/useProducts';
 
 const ProductDrawer = ({ isOpen, onToggle }) => {
   const { isLoading: categoriesIsLoading, categories } = useCategories();
@@ -42,12 +42,12 @@ const ProductDrawer = ({ isOpen, onToggle }) => {
 
   const handleSubmit = async (e) => {
     if (!form.name.trim() || !form.slug.trim() || !form.description.trim()) {
-      setError("عنوان و لینک  و توضیحات محصول الزامی هستند");
+      setError('عنوان و لینک  و توضیحات محصول الزامی هستند');
       return;
     }
 
     if (!selectedCategory) {
-      setError("انتخاب دسته بندی محصول الزامی است");
+      setError('انتخاب دسته بندی محصول الزامی است');
       return;
     }
     setIsSubmitting(true);
@@ -57,15 +57,15 @@ const ProductDrawer = ({ isOpen, onToggle }) => {
       await createProduct(buildFormData());
       resetForm();
       onToggle();
-      toast.success("محصول با موفقیت ایجاد شد");
+      toast.success('محصول با موفقیت ایجاد شد');
     } catch (err) {
-      console.log("Error:", err);
-      console.log("Status:", err.response?.status);
-      console.log("Data:", err.response?.data);
+      console.log('Error:', err);
+      console.log('Status:', err.response?.status);
+      console.log('Data:', err.response?.data);
       console.dir(err.response.data.data, { depth: null });
       toast.error(error);
 
-      setError(err.response?.data?.message || "خطا در ایجاد محصول");
+      setError(err.response?.data?.message || 'خطا در ایجاد محصول');
     } finally {
       setIsSubmitting(false);
     }
@@ -81,14 +81,14 @@ const ProductDrawer = ({ isOpen, onToggle }) => {
         placeholder="sumsung S24"
         type="text"
         value={form.name}
-        onChange={(e) => setField("name", e.target.value)}
+        onChange={(e) => setField('name', e.target.value)}
       />
       <ProductDrawerInput
         label="لینک"
         placeholder="sumsung-S24"
         type="text"
         value={form.slug}
-        onChange={(e) => setField("slug", e.target.value)}
+        onChange={(e) => setField('slug', e.target.value)}
       />
 
       <div className="my-5">
@@ -97,10 +97,7 @@ const ProductDrawer = ({ isOpen, onToggle }) => {
         {categoriesIsLoading ? (
           <p className="text-xs text-zinc-200">در حال بارگذاری</p>
         ) : (
-          <CascadeCategories
-            categories={categories}
-            onChange={handleCategoryChange}
-          />
+          <CascadeCategories categories={categories} onChange={handleCategoryChange} />
         )}
       </div>
 
@@ -113,23 +110,19 @@ const ProductDrawer = ({ isOpen, onToggle }) => {
 
       <div className="">
         <DynamicKeyValueFields
-          title={"ویژگی های فیلتری"}
+          title={'ویژگی های فیلتری'}
           items={form.filterValues}
-          onAdd={() => addPair("filterValues")}
-          onRemove={(index) => removePair("filterValues", index)}
-          onChange={(index, key, value) =>
-            updatePair("filterValues", index, key, value)
-          }
+          onAdd={() => addPair('filterValues')}
+          onRemove={(index) => removePair('filterValues', index)}
+          onChange={(index, key, value) => updatePair('filterValues', index, key, value)}
         />
 
         <DynamicKeyValueFields
-          title={"ویژگی های سفارشی"}
+          title={'ویژگی های سفارشی'}
           items={form.customFields}
-          onAdd={() => addPair("customFields")}
-          onRemove={(index) => removePair("customFields", index)}
-          onChange={(index, key, value) =>
-            updatePair("customFields", index, key, value)
-          }
+          onAdd={() => addPair('customFields')}
+          onRemove={(index) => removePair('customFields', index)}
+          onChange={(index, key, value) => updatePair('customFields', index, key, value)}
         />
       </div>
 
@@ -142,7 +135,7 @@ const ProductDrawer = ({ isOpen, onToggle }) => {
           id="product-details"
           className="w-full h-20 border border-zinc-800 rounded-sm focus:border-purple-600 focus:ring-1 focus:ring-purple-600/20"
           value={form.description}
-          onChange={(e) => setField("description", e.target.value)}
+          onChange={(e) => setField('description', e.target.value)}
         ></textarea>
       </div>
 
@@ -157,7 +150,7 @@ const ProductDrawer = ({ isOpen, onToggle }) => {
           onClick={handleSubmit}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "درحال ثبت..." : "ایجاد محصول"}
+          {isSubmitting ? 'درحال ثبت...' : 'ایجاد محصول'}
         </button>
       </div>
     </Drawer>

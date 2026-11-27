@@ -1,30 +1,26 @@
-import React, { useState } from "react";
-import Table from "../../../common/Table/index";
-import TableToolbar from "../../../common/Table/TableToolbar";
-import TableHead from "../../../common/Table/TableHead";
-import TableRow from "../../../common/Table/TableRow";
-import TableCell from "../../../common/Table/TableCell";
-import TableBody from "../../../common/Table/TableBody";
-import { RiAddLine } from "react-icons/ri";
-import ProductDrawer from "../../../common/ProductDrawer/ProductDrawer";
-import useProducts from "../../../../../../lib/Hooks/useProducts";
-import {
-  formatPrice,
-  getDisplayPrise,
-} from "../../../../../../lib/helpers/price";
-import { FiEdit2, FiTrash2 } from "react-icons/fi";
-import { deleteProduct } from "../../../../../../services/product.service";
-import Confirm from "../../../../../Common/Confirm";
-import { toast } from "sonner";
-import EditProductForm from "../../../../../Common/EditProductForm/EditProductForm";
+import React, { useState } from 'react';
+import Table from '../../../common/Table/index';
+import TableToolbar from '../../../common/Table/TableToolbar';
+import TableHead from '../../../common/Table/TableHead';
+import TableRow from '../../../common/Table/TableRow';
+import TableCell from '../../../common/Table/TableCell';
+import TableBody from '../../../common/Table/TableBody';
+import { RiAddLine } from 'react-icons/ri';
+import ProductDrawer from '../../../common/ProductDrawer/ProductDrawer';
+import useProducts from '../../../../../../lib/Hooks/useProducts';
+import { formatPrice, getDisplayPrise } from '../../../../../../lib/helpers/price';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { deleteProduct } from '../../../../../../services/product.service';
+import Confirm from '../../../../../Common/Confirm';
+import { toast } from 'sonner';
+import EditProductForm from '../../../../../Common/EditProductForm/EditProductForm';
 
 const ModeratorProductsTable = () => {
   const [isDrawerShow, setIsDrawerShow] = useState(false);
   const [editModalOepn, setEditModalOepn] = useState(false);
 
   const toggleDrawer = () => setIsDrawerShow((prev) => !prev);
-  const { products, pagination, page, setPage, isLoading, error, refetch } =
-    useProducts();
+  const { products, pagination, page, setPage, isLoading, error, refetch } = useProducts();
 
   const [deletingProduct, setDeletingProduct] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -36,12 +32,12 @@ const ModeratorProductsTable = () => {
 
     try {
       const res = await deleteProduct(deletingProduct._id);
-      toast.error("محصول با موفقیت حذف شد");
+      toast.error('محصول با موفقیت حذف شد');
 
       setDeletingProduct(null);
       refetch();
     } catch (error) {
-      toast.error(error?.response?.data?.message || "خطا در حذف محصول");
+      toast.error(error?.response?.data?.message || 'خطا در حذف محصول');
     } finally {
       setIsDeleting(false);
     }
@@ -90,34 +86,26 @@ const ModeratorProductsTable = () => {
         <TableBody>
           {isLoading && (
             <TableRow>
-              <TableCell className="text-purple-500">
-                درحال بارگذاری...
-              </TableCell>
+              <TableCell className="text-purple-500">درحال بارگذاری...</TableCell>
             </TableRow>
           )}
 
           {!isLoading && error && (
             <TableRow>
-              <TableCell className="text-red-500">
-                {error || "خطا در دریافت محصولات"}
-              </TableCell>
+              <TableCell className="text-red-500">{error || 'خطا در دریافت محصولات'}</TableCell>
             </TableRow>
           )}
 
           {!isLoading && !error && products.length === 0 && (
             <TableRow>
-              <TableCell className="text-purple-500">
-                هنوز محصولی ثبت نشده
-              </TableCell>
+              <TableCell className="text-purple-500">هنوز محصولی ثبت نشده</TableCell>
             </TableRow>
           )}
 
           {!isLoading &&
             !error &&
             products.map((product) => {
-              const { price, hasMultipleSellers } = getDisplayPrise(
-                product.sellers,
-              );
+              const { price, hasMultipleSellers } = getDisplayPrise(product.sellers);
 
               return (
                 <TableRow
@@ -151,9 +139,7 @@ const ModeratorProductsTable = () => {
                   <TableCell className="px-5 py-4 text-sm text-zinc-300 flex flex-col">
                     <span>{formatPrice(price)} تومان</span>
                     {hasMultipleSellers && (
-                      <span className="text-purple-500 text-xs">
-                        بیش از یک فروشنده
-                      </span>
+                      <span className="text-purple-500 text-xs">بیش از یک فروشنده</span>
                     )}
                   </TableCell>
 
@@ -194,9 +180,7 @@ const ModeratorProductsTable = () => {
         }}
         onConfirm={handleDelete}
         message={
-          deletingProduct
-            ? `آیا از حذف محصول «${deletingProduct.name}» اطمینان دارید؟`
-            : undefined
+          deletingProduct ? `آیا از حذف محصول «${deletingProduct.name}» اطمینان دارید؟` : undefined
         }
       />
 

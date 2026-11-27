@@ -1,7 +1,7 @@
-import React from "react";
-import { RiAddLine, RiCloseLine } from "react-icons/ri";
-import AsyncSelect from "react-select/async";
-import searchSellers from "../../../../../services/seller.service";
+import React from 'react';
+import { RiAddLine, RiCloseLine } from 'react-icons/ri';
+import AsyncSelect from 'react-select/async';
+import searchSellers from '../../../../../services/seller.service';
 
 const SellerFields = ({ sellers, onAdd, onRemove, onChange }) => {
   const loadSellersOption = async (inputValue) => {
@@ -35,12 +35,12 @@ const SellerFields = ({ sellers, onAdd, onRemove, onChange }) => {
                 loadOptions={loadSellersOption}
                 value={seller.info}
                 onChange={(option) => {
-                  onChange(index, "info", option);
-                  onChange(index, "id", option?.value);
+                  onChange(index, 'info', option);
+                  onChange(index, 'id', option?.value);
                 }}
-                noOptionsMessage={() => "فروشنده ای یافت نشد"}
+                noOptionsMessage={() => 'فروشنده ای یافت نشد'}
                 placeholder="جسجوی فروشنده"
-                loadingMessage={() => "درحال جستجو"}
+                loadingMessage={() => 'درحال جستجو'}
               />
             </div>
 
@@ -48,7 +48,7 @@ const SellerFields = ({ sellers, onAdd, onRemove, onChange }) => {
               type="text"
               placeholder="قیمت"
               value={seller.price}
-              onChange={(e) => onChange(index, "price", e.target.value)}
+              onChange={(e) => onChange(index, 'price', e.target.value)}
               className="border border-zinc-800 p-2 rounded-sm w-full"
             />
 
@@ -56,7 +56,7 @@ const SellerFields = ({ sellers, onAdd, onRemove, onChange }) => {
               type="text"
               placeholder="موجودی"
               value={seller.stock}
-              onChange={(e) => onChange(index, "stock", e.target.value)}
+              onChange={(e) => onChange(index, 'stock', e.target.value)}
               className="border border-zinc-800 p-2 rounded-sm w-full"
             />
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Checkout = () => {
   return (
@@ -10,16 +10,14 @@ const Checkout = () => {
         <div>
           <p className="font-bold text-zinc-600 text-sm">قیمت محصولات</p>
           <p className="font-medium flex-ic gap-1 text-sm ">
-            {Number(15_000_000).toLocaleString("fa-IR")}
+            {Number(15_000_000).toLocaleString('fa-IR')}
             <span className="text-sm">تومان</span>
           </p>
         </div>
         <div>
-          <p className="font-bold  text-xs text-purple-500!">
-            مالیات برافزوده {"(9%)"}
-          </p>
+          <p className="font-bold  text-xs text-purple-500!">مالیات برافزوده {'(9%)'}</p>
           <p className="font-medium flex-ic gap-1 text-xs text-purple-500! ">
-            {Number(297_500).toLocaleString("fa-IR")}
+            {Number(297_500).toLocaleString('fa-IR')}
             <span className="text-sm">تومان</span>
           </p>
         </div>
@@ -27,7 +25,7 @@ const Checkout = () => {
         <div className="text-zinc-800!">
           <p className="font-bold  text-sm">قیمت محصولات</p>
           <p className="flex-ic gap-1 text-lg font-black! ">
-            <strong>{Number(15_297_500).toLocaleString("fa-IR")}</strong>
+            <strong>{Number(15_297_500).toLocaleString('fa-IR')}</strong>
             <span className="text-sm ">تومان</span>
           </p>
         </div>

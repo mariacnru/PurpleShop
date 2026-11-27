@@ -1,21 +1,12 @@
-import React from "react";
-import { FiUploadCloud } from "react-icons/fi";
+import React from 'react';
+import { FiUploadCloud } from 'react-icons/fi';
 
-const ProductDrawerInput = ({
-  label,
-  placeholder,
-  type = "text",
-  value,
-  onChange,
-}) => {
+const ProductDrawerInput = ({ label, placeholder, type = 'text', value, onChange }) => {
   const id = crypto.randomUUID();
 
   return (
     <div className="flex flex-col gap-2 mt-2">
-      <label
-        htmlFor={`unique-input-${id}`}
-        className="text-sm font-medium text-zinc-300"
-      >
+      <label htmlFor={`unique-input-${id}`} className="text-sm font-medium text-zinc-300">
         {label}:
       </label>
 

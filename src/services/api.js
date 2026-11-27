@@ -4,7 +4,7 @@ import { toast } from "sonner";
 const api = axios.create({
   baseURL: "https://shopino.pachim.run/v1",
   withCredentials: true,
-  timeout: 5000,
+  // timeout: 5000,
 });
 
 api.interceptors.response.use(

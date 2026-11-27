@@ -1,5 +1,5 @@
-import { TbError404 } from "react-icons/tb";
-import { Link } from "react-router";
+import { TbError404 } from 'react-icons/tb';
+import { Link } from 'react-router';
 
 const NotFound = () => {
   return (
@@ -17,17 +17,12 @@ const NotFound = () => {
         </div>
 
         {/* Error Code */}
-        <p className="mb-2 text-sm font-medium tracking-[0.3em] text-purple-400">
-          خطای ۴۰۴
-        </p>
+        <p className="mb-2 text-sm font-medium tracking-[0.3em] text-purple-400">خطای ۴۰۴</p>
 
-        <h1 className="mb-4 text-3xl font-bold text-zinc-100 sm:text-4xl">
-          صفحه پیدا نشد
-        </h1>
+        <h1 className="mb-4 text-3xl font-bold text-zinc-100 sm:text-4xl">صفحه پیدا نشد</h1>
 
         <p className="mx-auto mb-8 max-w-sm text-sm leading-7 text-zinc-500">
-          متأسفانه صفحه‌ای که به دنبال آن هستید وجود ندارد یا ممکن است آدرس آن
-          تغییر کرده باشد.
+          متأسفانه صفحه‌ای که به دنبال آن هستید وجود ندارد یا ممکن است آدرس آن تغییر کرده باشد.
         </p>
 
         {/* Action */}
